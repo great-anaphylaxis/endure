@@ -10,7 +10,7 @@ export class Canvas {
             const obj = this.objects[i];
 
             obj.draw();
-            obj.loop();
+            if (obj.loop) obj.loop();
         }
     }
     
@@ -19,8 +19,14 @@ export class Canvas {
         window.requestAnimationFrame(() => this.drawLoop());
     }
 
-    static addObject(object) {
-        this.objects.push(object);
+    static addObject(obj) {
+        this.prepareObject(obj);
+        this.objects.push(obj);
+    }
+
+    static prepareObject(obj) {
+        if (obj.keydown) window.addEventListener('keydown', e => obj.keydown(e));
+        if (obj.keyup) window.addEventListener('keyup', e => obj.keyup(e));
     }
 
     static noImageSmoothing() {
