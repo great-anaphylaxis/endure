@@ -3,6 +3,8 @@ export var SpritePathMap = {
     grassblock: createImage('../src/images/grassblock.png'),
     dirtblock: createImage('../src/images/dirtblock.png'),
     itemslot: createImage('../src/images/itemslot.png'),
+    activeitemslot: createImage('../src/images/activeitemslot.png'),
+    wood: createImage('../src/images/wood.png'),
 }
 
 function createImage(path) {
