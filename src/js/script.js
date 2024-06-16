@@ -4,6 +4,7 @@ import { Player } from "./Objects/Player.js";
 import { GrassBlock } from "./Objects/GrassBlock.js";
 import { DirtBlock } from "./Objects/DirtBlock.js";
 import { Game } from "./game.js";
+import { ItemSlot } from "./Objects/ItemSlot.js";
 
 GameResizer.resizeAlways();
 Canvas.start();
@@ -16,4 +17,8 @@ for (let x = Game.leftBorder; x <= Game.rightBorder; x += 64) {
     for (let y = 0; y < 4; y++) {
         const dirtblock = new DirtBlock(x, Game.ground + (y + 1) * 64);
     }
+}
+
+for (let i = 0; i < 7; i++) {
+    const itemSlot = new ItemSlot(390 + (i * 80));
 }
