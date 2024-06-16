@@ -16,7 +16,7 @@ export class ItemSlot extends Sprite {
     }
 
     constructor(x) {
-        super({width: 80, height: 80, x: x, y: 500, imageName: 'itemslot', layer: "screen"});
+        super({width: 80, height: 80, x: x, y: 500, z: 1, imageName: 'itemslot', layer: "screen"});
 
         Canvas.addObject(this)
     }

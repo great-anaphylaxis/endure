@@ -8,6 +8,7 @@ export class Sprite {
         this.height = params.height || 100;
         this.x = params.x || 0;
         this.y = params.y || 0;
+        this.z = params.z || 0;
         this.layer = params.layer || "world"; // or screen
         this.img = SpritePathMap[params.imageName || "player"];
     }

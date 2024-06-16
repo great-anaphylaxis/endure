@@ -7,6 +7,7 @@ export class Text {
         this.font = params.font || '30px monospace';
         this.x = params.x || 0;
         this.y = params.y || 0;
+        this.z = params.z || 0;
         this.layer = params.layer || "screen";
 
         Canvas.addObject(this);

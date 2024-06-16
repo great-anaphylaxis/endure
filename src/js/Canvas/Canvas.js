@@ -12,12 +12,15 @@ export class Canvas {
     }
 
     static draw() {
-        this.canvas.clearRect(0, 0, 10000, 10000);
+        this.canvas.clearRect(0, 0, 1280, 720);
+
+        this.objects.sort((a, b) => a.z - b.z);
 
         for (let i = 0; i < this.objects.length; i++) {
             const obj = this.objects[i];
 
             obj.draw();
+            
             if (obj.loop) {
                 obj.loop();
             }

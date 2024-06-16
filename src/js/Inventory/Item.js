@@ -16,16 +16,17 @@ export class Item extends Sprite {
     }
 
     constructor(name) {
-        super({width: 64, height: 64, imageName: name, layer: "screen"});
+        super({width: 64, height: 64, z: 2, imageName: name, layer: "screen"});
         this.name = name;
         this.count = 1;
-        this.counter = new Text({text: this.count})
+        this.counter = new Text({text: this.count, z: 2})
 
         Canvas.addObject(this)
     }
 
     mousedown(e) {
         this.drag = true;
+        this.z = 3;
         Item.itemDragging = this;
     }
 
@@ -43,6 +44,7 @@ export class Item extends Sprite {
 
     mouseup(e) {
         this.drag = false;
+        this.z = 2;
 
         if (this.slot == ItemSlot.activeSlot) {
             this.slot.positionItem(this);
