@@ -1,7 +1,15 @@
+import { CanvasEvents } from "./CanvasEvents.js";
+
 export class Canvas {
     static element = document.getElementById('game');
     static canvas = this.element.getContext('2d');
     static objects = [];
+
+    static start() {
+        this.drawLoop();
+        this.noImageSmoothing();
+        CanvasEvents.addCanvasEvents();
+    }
 
     static draw() {
         this.canvas.clearRect(0, 0, 10000, 10000);
@@ -20,13 +28,8 @@ export class Canvas {
     }
 
     static addObject(obj) {
-        this.prepareObject(obj);
+        CanvasEvents.addEventsToObject(obj)
         this.objects.push(obj);
-    }
-
-    static prepareObject(obj) {
-        if (obj.keydown) window.addEventListener('keydown', e => obj.keydown(e));
-        if (obj.keyup) window.addEventListener('keyup', e => obj.keyup(e));
     }
 
     static noImageSmoothing() {

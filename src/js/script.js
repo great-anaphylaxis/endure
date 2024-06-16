@@ -6,8 +6,7 @@ import { DirtBlock } from "./Objects/DirtBlock.js";
 import { Game } from "./game.js";
 
 GameResizer.resizeAlways();
-Canvas.noImageSmoothing();
-Canvas.drawLoop();
+Canvas.start();
 
 const player = new Player();
 
