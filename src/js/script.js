@@ -11,10 +11,10 @@ Canvas.drawLoop();
 
 const player = new Player();
 
-for (let i = 0; i < 20; i++) {
-    const grassblock = new GrassBlock(i * 64, Game.ground);
+for (let x = Game.leftBorder; x <= Game.rightBorder; x += 64) {
+    const grassblock = new GrassBlock(x, Game.ground);
 
-    for (let j = 0; j < 4; j++) {
-        const dirtblock = new DirtBlock(i * 64, Game.ground + (j + 1) * 64);
+    for (let y = 0; y < 4; y++) {
+        const dirtblock = new DirtBlock(x, Game.ground + (y + 1) * 64);
     }
 }

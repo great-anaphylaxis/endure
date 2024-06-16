@@ -21,11 +21,21 @@ export class Player extends Sprite {
 
     loop() {
         if (this.left) {
-            this.x += -this.speed;
+            if (this.x <= Game.leftBorder) {
+                this.x = Game.leftBorder;
+            }
+            else {
+                this.x += -this.speed;
+            }
         }
     
         if (this.right) {
-            this.x += this.speed;
+            if (this.x >= Game.rightBorder) {
+                this.x = Game.rightBorder;
+            }
+            else {
+                this.x += this.speed;
+            }
         }
         
         this.velocityY += this.accelerationY;
