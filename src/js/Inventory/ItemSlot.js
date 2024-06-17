@@ -72,6 +72,10 @@ export class ItemSlot extends Sprite {
             item.slot.item = null;
             item.slot = null;
         }
+
+        else {
+            this.swap(item.slot);
+        }
     }
 
     positionItem(item) {
