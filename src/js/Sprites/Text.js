@@ -25,4 +25,14 @@ export class Text {
         Canvas.canvas.font = this.font;
         Canvas.canvas.fillText(this.text, finalX, finalY);
     }
+
+    remove() {
+        for (let i = 0; i < Canvas.objects.length; i++) {
+            const obj = Canvas.objects[i];
+
+            if (obj == this) {
+                Canvas.objects.splice(i, 1);
+            }
+        }
+    }
 }

@@ -1,6 +1,7 @@
 import { Canvas } from "../Canvas/Canvas.js";
 import { Sprite } from "../Sprites/Sprite.js";
 import { SpritePathMap } from "../Sprites/SpritePathMap.js";
+import { Game } from "../game.js";
 import { Item } from "./Item.js";
 
 export class ItemSlot extends Sprite {
@@ -15,17 +16,82 @@ export class ItemSlot extends Sprite {
         this.activeSlot.img = SpritePathMap['activeitemslot'];
     }
 
+
     constructor(x) {
         super({width: 80, height: 80, x: x, y: 500, z: 1, imageName: 'itemslot', layer: "screen"});
 
         Canvas.addObject(this)
     }
 
-    addItem(item) {
-        this.item = item;
-        this.item.slot = this;
+    swap(slot) {
+        const slot1 = this;
+        const slot2 = slot;
 
-        this.positionItem(item)
+        const item1 = this.item;
+        const item2 = slot.item;
+
+        this.item.slot = slot2;
+        this.item = item2;
+
+        slot.item.slot = slot1;
+        slot.item = item1;
+
+        this.positionItem(this.item);
+        slot.positionItem(slot.item);
+
+    }
+
+    addItem(item) {
+        // if empty
+        if (!this.item) {
+            if (item.slot) {
+                item.slot.item = null;
+                item.slot = null;
+            }
+
+            this.item = item;
+            this.item.slot = this;
+    
+            this.positionItem(item);
+        }
+
+        // if the same
+        else if (item == this.item) {
+            this.item = item;
+            this.item.slot = this;
+            
+            this.positionItem(item);
+        }
+
+        else if (Item.areTheSameItems(item, this.item)) {
+            const total = this.item.count + item.count;
+            const oneHasReachedLimit = (this.item.count == Game.inventoryLimit || item.count == Game.inventoryLimit);
+            const totalGreaterThanLimit = (total > Game.inventoryLimit);
+
+            if (oneHasReachedLimit) {
+                this.swap(item.slot);
+            }
+
+            else if (totalGreaterThanLimit) {
+                const major = Game.inventoryLimit;
+                const minor = total - major;
+
+                item.setCount(major);
+                this.item.setCount(minor);
+
+                this.swap(item.slot);
+            }
+
+            else {
+                this.item.setCount(this.item.count + item.count);
+    
+                item.counter.remove();
+                item.remove();
+    
+                item.slot.item = null;
+                item.slot = null;
+            }
+        }
     }
 
     positionItem(item) {

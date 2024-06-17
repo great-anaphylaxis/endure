@@ -24,9 +24,16 @@ export class Item extends Sprite {
         Canvas.addObject(this)
     }
 
+    setCount(count) {
+        this.count = count;
+        this.counter.text = this.count;
+        this.counter.draw();
+    }
+
     mousedown(e) {
         this.drag = true;
         this.z = 3;
+        this.counter.z = 3;
         Item.itemDragging = this;
     }
 
@@ -45,6 +52,7 @@ export class Item extends Sprite {
     mouseup(e) {
         this.drag = false;
         this.z = 2;
+        this.counter.z = 2;
 
         if (this.slot == ItemSlot.activeSlot) {
             this.slot.positionItem(this);

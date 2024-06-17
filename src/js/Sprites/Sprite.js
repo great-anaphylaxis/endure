@@ -24,4 +24,14 @@ export class Sprite {
 
         Canvas.canvas.drawImage(this.img, finalX, finalY, this.width, this.height);
     }
+
+    remove() {
+        for (let i = 0; i < Canvas.objects.length; i++) {
+            const obj = Canvas.objects[i];
+
+            if (obj == this) {
+                Canvas.objects.splice(i, 1);
+            }
+        }
+    }
 }
