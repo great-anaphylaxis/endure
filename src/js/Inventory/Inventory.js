@@ -5,7 +5,7 @@ export class Inventory {
     inventory = [];
 
     addSlot(slot) {
-        this.inventory.unshift(slot);
+        this.inventory.push(slot);
     }
 
     addItem(newItem) {
@@ -13,23 +13,22 @@ export class Inventory {
             const slot = this.inventory[i];
             const item = slot.item;
 
-            if (item && Item.areTheSameItems(item, newItem)) {
-                const total = item.count += newItem.count;
-                
-                if (total > Game.inventoryLimit) {
-                    continue;
-                }
-
-                else {
-                    item.setCount(item.count + 1);
-                }
-            }
-
-            else if (!item) {
+            if (!item) {
                 slot.item = newItem;
                 newItem.slot = slot;
 
                 slot.positionItem(slot.item);
+                break;
+            }
+
+            else if (item && Item.areTheSameItems(item, newItem)) {
+                const total = item.count + newItem.count;
+
+                item.setCount(total);
+
+                newItem.counter.remove();
+                newItem.remove();
+                break;
             }
 
             else {

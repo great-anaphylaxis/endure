@@ -64,33 +64,13 @@ export class ItemSlot extends Sprite {
         }
 
         else if (Item.areTheSameItems(item, this.item)) {
-            const total = this.item.count + item.count;
-            const oneHasReachedLimit = (this.item.count == Game.inventoryLimit || item.count == Game.inventoryLimit);
-            const totalGreaterThanLimit = (total > Game.inventoryLimit);
+            this.item.setCount(this.item.count + item.count);
 
-            if (oneHasReachedLimit) {
-                this.swap(item.slot);
-            }
+            item.counter.remove();
+            item.remove();
 
-            else if (totalGreaterThanLimit) {
-                const major = Game.inventoryLimit;
-                const minor = total - major;
-
-                item.setCount(major);
-                this.item.setCount(minor);
-
-                this.swap(item.slot);
-            }
-
-            else {
-                this.item.setCount(this.item.count + item.count);
-    
-                item.counter.remove();
-                item.remove();
-    
-                item.slot.item = null;
-                item.slot = null;
-            }
+            item.slot.item = null;
+            item.slot = null;
         }
     }
 
@@ -98,7 +78,7 @@ export class ItemSlot extends Sprite {
         item.x = this.x + ((this.width - this.item.width) / 2);
         item.y = this.y + ((this.height - this.item.height) / 2);
 
-        item.counter.x = item.x + (item.width - (item.width / 4));
+        item.counter.x = item.x + (item.width - (item.width / 2));
         item.counter.y = item.y + item.height;
     }
 

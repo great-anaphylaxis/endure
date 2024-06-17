@@ -25,4 +25,6 @@ for (let i = 0; i < 7; i++) {
     player.inventory.addSlot(itemSlot);
 }
 
-player.inventory.addItem(new Item("wood"));
+for (let i = 0; i < 10; i++) {
+    player.inventory.addItem(new Item('wood', 1))
+}
