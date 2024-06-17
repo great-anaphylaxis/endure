@@ -22,6 +22,7 @@ for (let x = Game.leftBorder; x <= Game.rightBorder; x += 64) {
 
 for (let i = 0; i < 7; i++) {
     const itemSlot = new ItemSlot(390 + (i * 80));
-    
-    itemSlot.addItem(new Item('wood'))
+    player.inventory.addSlot(itemSlot);
 }
+
+player.inventory.addItem(new Item("wood"));

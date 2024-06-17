@@ -4,6 +4,6 @@ export class Game {
     static leftBorder = -1000;
     static rightBorder = 1000;
 
-    static inventoryLimit = 3;
+    static inventoryLimit = 25;
     
 }

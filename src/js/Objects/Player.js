@@ -1,5 +1,6 @@
 import { Canvas } from "../Canvas/Canvas.js";
 import { Viewport } from "../Canvas/Viewport.js";
+import { Inventory } from "../Inventory/Inventory.js";
 import { Sprite } from "../Sprites/Sprite.js";
 import { Game } from "../game.js";
 
@@ -12,6 +13,7 @@ export class Player extends Sprite {
     speed = 7;
     allowJump = false;
     jumped = false;
+    inventory = new Inventory();
 
     constructor() {
         super({width: 64, height: 64, x: 100, y: 100, imageName: 'player'});
