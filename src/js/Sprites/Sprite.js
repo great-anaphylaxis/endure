@@ -11,6 +11,7 @@ export class Sprite {
         this.z = params.z || 0;
         this.layer = params.layer || "world"; // or screen
         this.img = SpritePathMap[params.imageName || "player"];
+        this.visible = params.visible || true;
     }
 
     draw() {

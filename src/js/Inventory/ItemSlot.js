@@ -1,6 +1,7 @@
 import { Canvas } from "../Canvas/Canvas.js";
 import { Sprite } from "../Sprites/Sprite.js";
 import { SpritePathMap } from "../Sprites/SpritePathMap.js";
+import { SpriteZMap } from "../Sprites/SpriteZMap.js";
 import { Game } from "../game.js";
 import { Item } from "./Item.js";
 
@@ -17,8 +18,8 @@ export class ItemSlot extends Sprite {
     }
 
 
-    constructor(x) {
-        super({width: 80, height: 80, x: x, y: 500, z: 1, imageName: 'itemslot', layer: "screen"});
+    constructor(x, y) {
+        super({width: 80, height: 80, x: x, y: y, z: SpriteZMap['itemslots'], imageName: 'itemslot', layer: "screen"});
 
         Canvas.addObject(this)
     }

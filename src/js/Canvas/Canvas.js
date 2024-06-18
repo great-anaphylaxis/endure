@@ -19,6 +19,10 @@ export class Canvas {
         for (let i = 0; i < this.objects.length; i++) {
             const obj = this.objects[i];
 
+            if (!obj.visible) {
+                continue;
+            }
+
             obj.draw();
             
             if (obj.loop) {

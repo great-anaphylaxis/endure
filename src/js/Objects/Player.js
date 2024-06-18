@@ -1,6 +1,6 @@
 import { Canvas } from "../Canvas/Canvas.js";
 import { Viewport } from "../Canvas/Viewport.js";
-import { Inventory } from "../Inventory/Inventory.js";
+import { PlayerInventory } from "../Inventory/PlayerInventory.js";
 import { Sprite } from "../Sprites/Sprite.js";
 import { Game } from "../game.js";
 
@@ -13,7 +13,7 @@ export class Player extends Sprite {
     speed = 7;
     allowJump = false;
     jumped = false;
-    inventory = new Inventory();
+    inventory = new PlayerInventory();
 
     constructor() {
         super({width: 64, height: 64, x: 100, y: 100, imageName: 'player'});
@@ -62,11 +62,11 @@ export class Player extends Sprite {
     }
 
     keydown(e) {
-        if (e.key == "a") {
+        if (e.key.toLowerCase() == "a") {
             this.left = true;
         }
     
-        if (e.key == "d") {
+        if (e.key.toLowerCase() == "d") {
             this.right = true
         }
     
@@ -77,11 +77,11 @@ export class Player extends Sprite {
     }
 
     keyup(e) {
-        if (e.key == "a") {
+        if (e.key.toLowerCase() == "a") {
             this.left = false;
         }
     
-        if (e.key == "d") {
+        if (e.key.toLowerCase() == "d") {
             this.right = false;
         }
     }

@@ -6,6 +6,8 @@ import { DirtBlock } from "./Objects/DirtBlock.js";
 import { Game } from "./game.js";
 import { ItemSlot } from "./Inventory/ItemSlot.js";
 import { Item } from "./Inventory/Item.js";
+import { PlayerInventoryButton } from "./Inventory/PlayerInventoryButton.js";
+import { PlayerInventory } from "./Inventory/PlayerInventory.js";
 
 GameResizer.resizeAlways();
 Canvas.start();
@@ -20,10 +22,6 @@ for (let x = Game.leftBorder; x <= Game.rightBorder; x += 64) {
     }
 }
 
-for (let i = 0; i < 7; i++) {
-    const itemSlot = new ItemSlot(390 + (i * 80));
-    player.inventory.addSlot(itemSlot);
-}
 
-player.inventory.addItem(new Item('wood', 3))
-player.inventory.addItem(new Item('rock', 75))
+player.inventory.addItem(new Item('wood', 10))
+player.inventory.addItem(new Item('rock', 15))

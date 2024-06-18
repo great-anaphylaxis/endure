@@ -12,6 +12,10 @@ export class CanvasEvents {
                 const onWorldLayer = (obj.layer === "world")
                 const onScreenLayer = (obj.layer === "screen")
 
+                if (!obj.visible) {
+                    continue;
+                }
+
                 if (Viewport.pointOnObject(obj, pointX, pointY) && onWorldLayer) {
                     if (obj.mousedown) {
                         obj.mousedown(e);
@@ -35,6 +39,10 @@ export class CanvasEvents {
                 const onWorldLayer = (obj.layer === "world")
                 const onScreenLayer = (obj.layer === "screen")
 
+                if (!obj.visible) {
+                    continue;
+                }
+
                 if (Viewport.pointOnObject(obj, pointX, pointY) && onWorldLayer) {
                     if (obj.mouseup) {
                         obj.mouseup(e);
@@ -52,15 +60,27 @@ export class CanvasEvents {
 
     static addEventsToObject(obj) {
         if (obj.keydown) {
-            window.addEventListener('keydown', e => obj.keydown(e));
+            window.addEventListener('keydown', e => {
+                if (obj.visible) {
+                    obj.keydown(e)
+                }
+            });
         }
 
         if (obj.keyup) {
-            window.addEventListener('keyup', e => obj.keyup(e));
+            window.addEventListener('keyup', e => {
+                if (obj.visible) {
+                    obj.keyup(e);
+                }
+            });
         }
 
         if (obj.mousemove) {
-            Canvas.element.addEventListener('mousemove', e => obj.mousemove(e));
+            Canvas.element.addEventListener('mousemove', e => {
+                if (obj.visible) {
+                    obj.mousemove(e);
+                }
+            });
         }
     }
 }

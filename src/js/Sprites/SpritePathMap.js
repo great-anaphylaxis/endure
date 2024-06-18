@@ -6,6 +6,7 @@ export var SpritePathMap = {
     activeitemslot: createImage('../src/images/activeitemslot.png'),
     wood: createImage('../src/images/wood.png'),
     rock: createImage('../src/images/rock.png'),
+    playerinventorybutton: createImage('../src/images/playerinventorybutton.png'),
 }
 
 function createImage(path) {

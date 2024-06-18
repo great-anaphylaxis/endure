@@ -10,6 +10,7 @@ export class Text {
         this.y = params.y || 0;
         this.z = params.z || 0;
         this.layer = params.layer || "screen";
+        this.visible = params.visible || true;
 
         Canvas.addObject(this);
     }
