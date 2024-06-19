@@ -19,7 +19,7 @@ export class ItemSlot extends Sprite {
 
 
     constructor(x, y) {
-        super({width: 80, height: 80, x: x, y: y, z: SpriteZMap['itemslots'], imageName: 'itemslot', layer: "screen"});
+        super({width: 64, height: 64, x: x, y: y, z: SpriteZMap['itemslots'], imageName: 'itemslot', layer: "screen"});
 
         Canvas.addObject(this)
     }
@@ -83,7 +83,7 @@ export class ItemSlot extends Sprite {
         item.x = this.x + ((this.width - this.item.width) / 2);
         item.y = this.y + ((this.height - this.item.height) / 2);
 
-        item.counter.x = item.x + (item.width - (item.width / 2));
+        item.counter.x = item.x + (item.width - (item.width / 3));
         item.counter.y = item.y + item.height;
     }
 

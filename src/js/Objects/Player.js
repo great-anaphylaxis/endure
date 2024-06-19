@@ -1,6 +1,7 @@
 import { Canvas } from "../Canvas/Canvas.js";
 import { Viewport } from "../Canvas/Viewport.js";
 import { PlayerInventory } from "../Inventory/PlayerInventory.js";
+import { PlayerUtility } from "../Utility/PlayerUtility.js";
 import { Sprite } from "../Sprites/Sprite.js";
 import { Game } from "../game.js";
 
@@ -13,10 +14,12 @@ export class Player extends Sprite {
     speed = 7;
     allowJump = false;
     jumped = false;
-    inventory = new PlayerInventory();
+    inventory = new PlayerInventory(this);
+    utility = new PlayerUtility();
 
     constructor() {
         super({width: 64, height: 64, x: 100, y: 100, imageName: 'player'});
+        this.toggleVisibility();
 
         Canvas.addObject(this)
     }
@@ -84,5 +87,10 @@ export class Player extends Sprite {
         if (e.key.toLowerCase() == "d") {
             this.right = false;
         }
+    }
+
+    toggleVisibility() {
+        this.inventory.toggleVisibility();
+        this.utility.toggleVisibility();
     }
 }

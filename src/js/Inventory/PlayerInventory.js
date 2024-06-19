@@ -6,21 +6,22 @@ export class PlayerInventory extends Inventory {
     slots = [];
     visible = true;
 
-    constructor() {
+    constructor(player) {
         super();
 
+        this.player = player;
         this.createSlots();
         this.createPlayerInventoryButton();
     }
 
     createSlots() {
         for (let i = 0; i < 7; i++) {
-            const itemSlot = new ItemSlot(350 + (i * 80), 500);
+            const itemSlot = new ItemSlot(410 + (i * 64), 600);
             this.addSlot(itemSlot);
         }
 
         for (let i = 0; i < 7; i++) {
-            const itemSlot = new ItemSlot(350 + (i * 80), 200);
+            const itemSlot = new ItemSlot(100 + (i * 64), 100);
             this.addSlot(itemSlot);
 
             this.slots.push(itemSlot);
@@ -28,7 +29,7 @@ export class PlayerInventory extends Inventory {
     }
 
     createPlayerInventoryButton() {
-        const button = new PlayerInventoryButton(910, 500, this);
+        const button = new PlayerInventoryButton(858, 600, this.player);
     }
 
     toggleVisibility() {

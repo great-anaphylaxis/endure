@@ -3,27 +3,27 @@ import { Sprite } from "../Sprites/Sprite.js";
 import { SpriteZMap } from "../Sprites/SpriteZMap.js";
 
 export class PlayerInventoryButton extends Sprite {
-    constructor(x, y, playerInventory) {
+    constructor(x, y, player) {
         super({
-            width: 80, 
-            height: 80, 
+            width: 64, 
+            height: 64, 
             x: x, y: y, z: SpriteZMap['itemslots'], 
             imageName: 'playerinventorybutton', 
             layer: 'screen'
         });
 
-        this.playerInventory = playerInventory
+        this.player = player;
 
         Canvas.addObject(this)
     }
 
     mouseup() {
-        this.playerInventory.toggleVisibility();
+        this.player.toggleVisibility();
     }
 
     keyup(e) {
         if (e.key == "Tab") {
-            this.playerInventory.toggleVisibility();
+            this.player.toggleVisibility();
         } 
     }
 }

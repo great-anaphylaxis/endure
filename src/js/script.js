@@ -8,6 +8,7 @@ import { ItemSlot } from "./Inventory/ItemSlot.js";
 import { Item } from "./Inventory/Item.js";
 import { PlayerInventoryButton } from "./Inventory/PlayerInventoryButton.js";
 import { PlayerInventory } from "./Inventory/PlayerInventory.js";
+import { PlayerUtility } from "./Utility/PlayerUtility.js";
 
 GameResizer.resizeAlways();
 Canvas.start();
@@ -23,5 +24,5 @@ for (let x = Game.leftBorder; x <= Game.rightBorder; x += 64) {
 }
 
 
-player.inventory.addItem(new Item('wood', 10))
+player.inventory.addItem(new Item('wood', 2))
 player.inventory.addItem(new Item('rock', 15))

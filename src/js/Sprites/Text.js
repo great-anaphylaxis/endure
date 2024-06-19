@@ -4,7 +4,7 @@ import { Viewport } from "../Canvas/Viewport.js";
 export class Text {
     constructor(params) {
         this.text = params.text || '';
-        this.font = params.font || '30px monospace';
+        this.font = params.font || '20px monospace';
         this.color = params.color || 'black';
         this.x = params.x || 0;
         this.y = params.y || 0;

@@ -17,7 +17,7 @@ export class Item extends Sprite {
     }
 
     constructor(name, count=1) {
-        super({width: 64, height: 64, z: SpriteZMap['items'], imageName: name, layer: "screen"});
+        super({width: 48, height: 48, z: SpriteZMap['items'], imageName: name, layer: "screen"});
         this.name = name;
         this.count = 1;
         this.counter = new Text({text: this.count, z: SpriteZMap['itemtext'], color: 'yellow'})
@@ -47,7 +47,7 @@ export class Item extends Sprite {
             this.x = pointX - (this.width / 2);
             this.y = pointY - (this.height / 2);
 
-            this.counter.x = this.x + (this.width - (this.width / 2));
+            this.counter.x = this.x + (this.width - (this.width / 3));
             this.counter.y = this.y + this.height;
         }
     }
