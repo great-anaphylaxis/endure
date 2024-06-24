@@ -1,30 +1,53 @@
 import { Sprite } from "../Sprites/Sprite.js";
 import { Canvas } from "../Canvas/Canvas.js";
 import { SpriteZMap } from "../Sprites/SpriteZMap.js";
+import { SpritePathMap } from "../Sprites/SpritePathMap.js";
 
 export class PlayerUtilityGroup extends Sprite {
+    static chosenGroup;
     utilityItems = [];
     
-    constructor(name) {
+    constructor(name, disabledname, utility) {
         super({
             x: 0, y: 0, z: SpriteZMap['playerutilitygroup'], 
             width: 64, height: 64, 
             layer: 'screen',
-            imageName: name
+            imageName: disabledname
         });
         this.name = name;
+        this.disabledname = disabledname;
+        this.utility = utility;
         
         Canvas.addObject(this);
     }
     
     toggleVisibility() {
         this.visible = !this.visible;
-        
+    }
+
+    show() {
+        const chosenGroup = PlayerUtilityGroup.chosenGroup;
+
+        if (chosenGroup) {
+            chosenGroup.img = SpritePathMap[chosenGroup.disabledname];
+
+            for (let i = 0; i < chosenGroup.utilityItems.length; i++) {
+                const utilityItem = chosenGroup.utilityItems[i];
+                
+                utilityItem.visible = false;
+            }
+        }
+
+        PlayerUtilityGroup.chosenGroup = this;
+        PlayerUtilityGroup.chosenGroup.img = SpritePathMap[PlayerUtilityGroup.chosenGroup.name];
+
         for (let i = 0; i < this.utilityItems.length; i++) {
             const utilityItem = this.utilityItems[i];
             
-            utilityItem.visible = !utilityItem.visible;
+            utilityItem.visible = true;
         }
+
+        
     }
     
     addUtilityItem(item) {
@@ -37,5 +60,9 @@ export class PlayerUtilityGroup extends Sprite {
         item.playerUtility = this.playerUtility;
         
         this.utilityItems.push(item);
+    }
+
+    mouseup() {
+        this.show()
     }
 }

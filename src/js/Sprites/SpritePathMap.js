@@ -9,6 +9,9 @@ export var SpritePathMap = {
     playerinventorybutton: createImage('../src/images/playerinventorybutton.png'),
     playerutility: createImage('../src/images/playerutility.png'),
     playerutilitybutton: createImage('../src/images/playerutilitybutton.png'),
+    maingroup: createImage('../src/images/maingroup.png'),
+    disabledmaingroup: createImage('../src/images/disabledmaingroup.png'),
+    background1: createImage('../src/images/background1.png'),
 }
 
 function createImage(path) {

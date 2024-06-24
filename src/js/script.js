@@ -11,9 +11,13 @@ import { PlayerInventory } from "./Inventory/PlayerInventory.js";
 import { PlayerUtility } from "./Utility/PlayerUtility.js";
 import { Item } from "./Inventory/Item.js";
 import { DroppedItem } from "./Inventory/DroppedItem.js";
+import { Sprite } from "./Sprites/Sprite.js";
 
 GameResizer.resizeAlways();
 Canvas.start();
+
+const bg = new Sprite({x: 0, y: 0, z: -10, width: 1280, height: 720, imageName: 'background1', layer: 'screen'});
+Canvas.addObject(bg)
 
 const player = new Player();
 

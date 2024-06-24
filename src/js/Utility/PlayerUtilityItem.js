@@ -7,7 +7,7 @@ export class PlayerUtilityItem extends Sprite {
     constructor(name, requiredItems) {
         super({
             x: 0, y: 0, z: SpriteZMap["playerutilityitems"],
-            width: 48, height: 48,
+            width: 48, height: 48, visible: false,
             imageName: name, layer: "screen"
         });
    

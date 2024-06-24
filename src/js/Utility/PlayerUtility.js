@@ -36,9 +36,11 @@ export class PlayerUtility extends Sprite {
         Canvas.addObject(this);
         
         // test
-        this.addUtilityGroup(new PlayerUtilityGroup('wood'));
+        this.addUtilityGroup(new PlayerUtilityGroup('maingroup', 'disabledmaingroup'));
         
-        this.utilityGroups["wood"].addUtilityItem(new PlayerUtilityItem('stone', [new Item('wood', 1), new Item('stone', 1)]));
+        this.utilityGroups["maingroup"]
+        .addUtilityItem(new PlayerUtilityItem('stone', [new Item('wood', 1), new Item('stone', 1)]));
+
     }
 
     toggleVisibility() {
@@ -60,12 +62,16 @@ export class PlayerUtility extends Sprite {
             
             utilityGroup.toggleVisibility();
         }
+        
+        if (this.visible) {
+            this.utilityGroups["maingroup"].show();
+        }
     }
     
     addUtilityGroup(group) {
         const name = group.name;
         const length = Object.keys(this.utilityGroups).length;
-        const x = 740 + (length * 48)
+        const x = 740 + (length * 72)
         
         group.x = x;
         group.y = 175;
