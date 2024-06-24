@@ -3,9 +3,10 @@ import { Item } from "./Item.js";
 
 export class Inventory {
     inventory = [];
-
+    
     addSlot(slot) {
         this.inventory.push(slot);
+        this.updateFunction();
     }
 
     addItem(newItem) {
@@ -33,7 +34,6 @@ export class Inventory {
                     newItem.slot.item = undefined;
                     newItem.slot = undefined;
                 }
-                
                 break;
             }
 
@@ -41,7 +41,9 @@ export class Inventory {
                 continue;
             }
         }
-       
+
+        
+        this.updateFunction();
     }
     
     howManyItems(itemChecking) {
@@ -56,7 +58,7 @@ export class Inventory {
                 continue;
             }
         }
-        
+
         return count;
     }
     
@@ -96,10 +98,12 @@ export class Inventory {
                 }
             }
             
+            this.updateFunction();
             return true;
         }
         
         else {
+            this.updateFunction();
             return false;
         }
     }

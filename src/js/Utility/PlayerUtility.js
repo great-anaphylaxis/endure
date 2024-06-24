@@ -83,4 +83,18 @@ export class PlayerUtility extends Sprite {
             this.requiredItemsHint.push(requiredItem)
         }
     }
+
+    updateRequiredItemHints() {
+        if (this.item) {
+            const requiredItems = this.item.requiredItems;
+
+            for (let i = 0; i < requiredItems.length; i++) {
+                const requiredItem = requiredItems[i];
+                const hint = this.requiredItemsHint[i];
+                const available = this.player.inventory.howManyItems(requiredItem);
+                
+                hint.show(requiredItem, available);
+            }
+        }
+    }
 }

@@ -42,13 +42,6 @@ export class PlayerUtilityButton extends Sprite {
         
         this.inventory.addItem(new InventoryItem(utilityItem.name, 1));
         
-        for (let i = 0; i < requiredItems.length; i++) {
-            const requiredItem = requiredItems[i];
-            const hint = this.playerUtility.requiredItemsHint[i];
-            const available = this.inventory.howManyItems(requiredItem);
-            
-            hint.show(requiredItem, available);
-        }
-        
+        this.playerUtility.updateRequiredItemHints();
     }
 }

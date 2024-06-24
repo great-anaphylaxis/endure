@@ -46,4 +46,12 @@ export class PlayerInventory extends Inventory {
             }
         }
     }
+
+    updateFunction() {
+        if (this.player.utility) {
+            const utility = this.player.utility;
+
+            utility.updateRequiredItemHints();
+        }
+    }
 }
