@@ -15,13 +15,13 @@ export class Player extends Sprite {
     allowJump = false;
     jumped = false;
     inventory = new PlayerInventory(this);
-    utility = new PlayerUtility();
+    utility = new PlayerUtility(this);
 
     constructor() {
         super({width: 64, height: 64, x: 100, y: 100, imageName: 'player'});
         this.toggleVisibility();
 
-        Canvas.addObject(this)
+        Canvas.addObject(this);
     }
 
     loop() {

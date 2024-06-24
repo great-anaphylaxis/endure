@@ -84,7 +84,7 @@ export class ItemSlot extends Sprite {
         item.y = this.y + ((this.height - this.item.height) / 2);
 
         item.counter.x = item.x + (item.width - (item.width / 3));
-        item.counter.y = item.y + item.height;
+        item.counter.y = item.y + item.height - 10;
     }
 
     mousedown(e) {

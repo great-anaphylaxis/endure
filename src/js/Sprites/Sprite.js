@@ -11,7 +11,7 @@ export class Sprite {
         this.z = params.z || 0;
         this.layer = params.layer || "world"; // or screen
         this.img = SpritePathMap[params.imageName || "player"];
-        this.visible = params.visible || true;
+        this.visible = params.visible ?? true;
     }
 
     draw() {
@@ -22,8 +22,11 @@ export class Sprite {
             finalX = finalX - Viewport.x;
             finalY = finalY - Viewport.y;
         }
+        
+        if (this.img.complete) {
+            Canvas.canvas.drawImage(this.img, finalX, finalY, this.width, this.height);
+        }
 
-        Canvas.canvas.drawImage(this.img, finalX, finalY, this.width, this.height);
     }
 
     remove() {

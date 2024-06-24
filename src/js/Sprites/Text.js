@@ -25,6 +25,7 @@ export class Text {
         }
 
         Canvas.canvas.font = this.font;
+        Canvas.canvas.textBaseline = "top";
         Canvas.canvas.fillStyle = this.color;
         Canvas.canvas.fillText(this.text, finalX, finalY);
     }
