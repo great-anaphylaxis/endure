@@ -29,7 +29,7 @@ export class InventoryItem extends Sprite {
         this.drag = true;
         this.z = SpriteZMap['elevateditems'];
         this.counter.z = SpriteZMap['elevateditemtext'];
-        Item.itemDragging = this;
+        InventoryItem.itemDragging = this;
     }
 
     mousemove(e) {
@@ -48,7 +48,7 @@ export class InventoryItem extends Sprite {
         this.drag = false;
         this.z = SpriteZMap['items'];
         this.counter.z = SpriteZMap['itemtext'];
-
+        
         if (this.slot == ItemSlot.activeSlot) {
             this.slot.positionItem(this);
         }

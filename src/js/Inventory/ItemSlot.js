@@ -2,7 +2,7 @@ import { Canvas } from "../Canvas/Canvas.js";
 import { Sprite } from "../Sprites/Sprite.js";
 import { SpritePathMap } from "../Sprites/SpritePathMap.js";
 import { SpriteZMap } from "../Sprites/SpriteZMap.js";
-import { Game } from "../game.js";
+import { InventoryItem } from "./InventoryItem.js";
 import { Item } from "./Item.js";
 
 export class ItemSlot extends Sprite {
@@ -93,10 +93,10 @@ export class ItemSlot extends Sprite {
 
     mouseup(e) {
         ItemSlot.setActiveSlot(this)
-        if (Item.itemDragging) {
-            this.addItem(Item.itemDragging);
+        if (InventoryItem.itemDragging) {
+            this.addItem(InventoryItem.itemDragging);
         }
 
-        Item.itemDragging = null;
+        InventoryItem.itemDragging = null;
     }
 }
