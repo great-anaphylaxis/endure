@@ -9,7 +9,7 @@ export class Rock extends Sprite {
         super({
             x: x, y: Game.ground - 96,
             width: 96, height: 96,
-            imageName: "rock", filter: "brightness(0) invert(1)"
+            imageName: "rock"
         });
 
         this.health = 40;
@@ -22,6 +22,11 @@ export class Rock extends Sprite {
 
         if (player.canDamage && player.collides(this)) {
             this.health -= player.damage;
+            this.filter = "brightness(0) invert(1)";
+
+            setTimeout(function() {
+                this.filter = "none";
+            }.bind(this), 100);
         }
 
         if (this.health <= 0) {

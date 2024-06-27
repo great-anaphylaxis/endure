@@ -10,6 +10,7 @@ export class DroppedItem extends Sprite {
     accelerationY = 0.6;
     velocityY = 0;
     floatAllowance = 15;
+    collectionAllowed = false;
     
     constructor(name, count, x, y) {
         super({
@@ -27,7 +28,11 @@ export class DroppedItem extends Sprite {
         this.name = name;
         this.count = count;
         
-        Canvas.addObject(this)
+        Canvas.addObject(this);
+
+        setTimeout(function() {
+            this.collectionAllowed = true;
+        }.bind(this), 500)
     }
     
     loop() {
@@ -45,7 +50,7 @@ export class DroppedItem extends Sprite {
         this.counter.x = this.x + 30;
         this.counter.y = this.y + 30;
         
-        if (player.collides(this)) {
+        if (this.collectionAllowed && player.collides(this)) {
             player.inventory.addItem(new InventoryItem(this.name, this.count));
             
             this.counter.remove();

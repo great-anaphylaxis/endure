@@ -22,6 +22,11 @@ export class Tree extends Sprite {
 
         if (player.canDamage && player.collides(this)) {
             this.health -= player.damage;
+            this.filter = "brightness(0) invert(1)";
+
+            setTimeout(function() {
+                this.filter = "none";
+            }.bind(this), 100);
         }
 
         if (this.health <= 0) {
