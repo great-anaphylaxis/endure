@@ -11,6 +11,10 @@ import { Sprite } from "./Sprites/Sprite.js";
 import { Rock } from "./Objects/Rock.js";
 import { Tree } from "./Objects/Tree.js";
 
+window.addEventListener('error', e => {
+    alert(`${e.message} at ${e.filename}`);
+})
+
 GameResizer.resizeAlways();
 Canvas.start();
 
