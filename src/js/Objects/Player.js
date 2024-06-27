@@ -4,9 +4,9 @@ import { PlayerInventory } from "../Inventory/PlayerInventory.js";
 import { PlayerUtility } from "../Utility/PlayerUtility.js";
 import { Game } from "../game.js";
 import { SpriteZMap } from "../Sprites/SpriteZMap.js";
-import { Entity } from "./Entity.js";
+import { Sprite } from "../Sprites/Sprite.js";
 
-export class Player extends Entity {
+export class Player extends Sprite {
     left = false;
     right = false;
     velocityY = 0;
@@ -18,6 +18,13 @@ export class Player extends Entity {
     inventory = new PlayerInventory(this);
     utility = new PlayerUtility(this);
 
+    player;
+
+    isDamageCooldown = false;
+    canDamage = false;
+    damageCooldown = 500;
+    damage = 6;
+
     constructor() {
         super({
             width: 64, height: 64, 
@@ -27,6 +34,25 @@ export class Player extends Entity {
         this.toggleVisibility();
 
         Canvas.addObject(this);
+
+        Player.player = this;
+    }
+
+    static get() {
+        return Player.player;
+    }
+
+    collides(obj) {
+        if (
+            obj.x < this.x + this.width &&
+            obj.x + obj.width > this.x &&
+            obj.y < this.y + this.height &&
+            obj.y + obj.height > this.y
+        ) {
+            return true;
+        }
+
+        return false;
     }
 
     loop() {
@@ -67,6 +93,11 @@ export class Player extends Entity {
     
         Viewport.x = this.x - 1280 / 2;
         Viewport.y = this.y - 720 / 2;
+
+        // collision stuff
+        if (this.canDamage) {
+            this.canDamage = false;
+        }
     }
 
     keydown(e) {
@@ -81,6 +112,15 @@ export class Player extends Entity {
         if (e.key == " " && this.allowJump) {
             this.jumped = true
             this.allowJump = false;
+        }
+
+        if (e.key == "Enter" && !this.isDamageCooldown) {
+            this.canDamage = true;
+
+            this.isDamageCooldown = true;
+            setTimeout(function() {
+                this.isDamageCooldown = false;
+            }.bind(this), this.damageCooldown);
         }
     }
 

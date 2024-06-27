@@ -32,7 +32,7 @@ player.inventory.addItem(new InventoryItem('wood', 2))
 player.inventory.addItem(new InventoryItem('stone', 15))
 player.inventory.removeItems(new Item('stone', 8));
 
-const drop = new DroppedItem("stone", 5, 100, -500, player);
+const drop = new DroppedItem("stone", 5, 100, -500);
 
 const rock = new Rock(100);
 const tree = new Tree(300);

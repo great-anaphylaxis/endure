@@ -4,13 +4,14 @@ import { Game } from "../game.js";
 import { Text } from "../Sprites/Text.js";
 import { SpriteZMap } from "../Sprites/SpriteZMap.js";
 import { InventoryItem } from "../Inventory/InventoryItem.js";
+import { Player } from "../Objects/Player.js";
 
 export class DroppedItem extends Sprite {
     accelerationY = 0.6;
     velocityY = 0;
     floatAllowance = 15;
     
-    constructor(name, count, x, y, player) {
+    constructor(name, count, x, y) {
         super({
             x: x, y: y, z: SpriteZMap["droppeditems"],
             width: 48, height: 48,
@@ -25,13 +26,12 @@ export class DroppedItem extends Sprite {
         });
         this.name = name;
         this.count = count;
-        this.player = player;
         
         Canvas.addObject(this)
     }
     
     loop() {
-        const player = this.player;
+        const player = Player.get();
         
         this.velocityY += this.accelerationY;
         
@@ -45,12 +45,7 @@ export class DroppedItem extends Sprite {
         this.counter.x = this.x + 30;
         this.counter.y = this.y + 30;
         
-        if (
-            this.x < player.x + player.width &&
-            this.x + this.width > player.x &&
-            this.y < player.y + player.height &&
-            this.y + this.height > player.y
-        ) {
+        if (player.collides(this)) {
             player.inventory.addItem(new InventoryItem(this.name, this.count));
             
             this.counter.remove();
