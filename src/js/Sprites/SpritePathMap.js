@@ -12,6 +12,8 @@ export var SpritePathMap = {
     maingroup: createImage('../src/images/maingroup.png'),
     disabledmaingroup: createImage('../src/images/disabledmaingroup.png'),
     background1: createImage('../src/images/background1.png'),
+    rock: createImage('../src/images/rock.png'),
+    tree: createImage('../src/images/tree.png'),
 }
 
 function createImage(path) {

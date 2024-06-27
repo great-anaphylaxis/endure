@@ -2,10 +2,11 @@ import { Canvas } from "../Canvas/Canvas.js";
 import { Viewport } from "../Canvas/Viewport.js";
 import { PlayerInventory } from "../Inventory/PlayerInventory.js";
 import { PlayerUtility } from "../Utility/PlayerUtility.js";
-import { Sprite } from "../Sprites/Sprite.js";
 import { Game } from "../game.js";
+import { SpriteZMap } from "../Sprites/SpriteZMap.js";
+import { Entity } from "./Entity.js";
 
-export class Player extends Sprite {
+export class Player extends Entity {
     left = false;
     right = false;
     velocityY = 0;
@@ -18,7 +19,11 @@ export class Player extends Sprite {
     utility = new PlayerUtility(this);
 
     constructor() {
-        super({width: 64, height: 64, x: 100, y: 100, imageName: 'player'});
+        super({
+            width: 64, height: 64, 
+            x: 100, y: 100, z: SpriteZMap['player'],
+            imageName: 'player'
+        });
         this.toggleVisibility();
 
         Canvas.addObject(this);

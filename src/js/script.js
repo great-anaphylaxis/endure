@@ -4,14 +4,12 @@ import { Player } from "./Objects/Player.js";
 import { GrassBlock } from "./Objects/GrassBlock.js";
 import { DirtBlock } from "./Objects/DirtBlock.js";
 import { Game } from "./game.js";
-import { ItemSlot } from "./Inventory/ItemSlot.js";
 import { InventoryItem } from "./Inventory/InventoryItem.js";
-import { PlayerInventoryButton } from "./Inventory/PlayerInventoryButton.js";
-import { PlayerInventory } from "./Inventory/PlayerInventory.js";
-import { PlayerUtility } from "./Utility/PlayerUtility.js";
 import { Item } from "./Inventory/Item.js";
 import { DroppedItem } from "./Inventory/DroppedItem.js";
 import { Sprite } from "./Sprites/Sprite.js";
+import { Rock } from "./Objects/Rock.js";
+import { Tree } from "./Objects/Tree.js";
 
 GameResizer.resizeAlways();
 Canvas.start();
@@ -35,3 +33,6 @@ player.inventory.addItem(new InventoryItem('stone', 15))
 player.inventory.removeItems(new Item('stone', 8));
 
 const drop = new DroppedItem("stone", 5, 100, -500, player);
+
+const rock = new Rock(100);
+const tree = new Tree(300);

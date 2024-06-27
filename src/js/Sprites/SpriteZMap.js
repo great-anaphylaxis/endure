@@ -1,7 +1,8 @@
 export var SpriteZMap = {
     world: 0,
-    droppeditems: 8,
-    droppeditemtext: 9,
+    droppeditems: 7,
+    droppeditemtext: 8,
+    player: 9,
     itemslots: 10,
     playerutility: 10,
     items: 11,
