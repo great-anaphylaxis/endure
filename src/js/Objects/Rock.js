@@ -9,7 +9,7 @@ export class Rock extends Sprite {
         super({
             x: x, y: Game.ground - 96,
             width: 96, height: 96,
-            imageName: "rock"
+            imageName: "rock", filter: "brightness(0) invert(1)"
         });
 
         this.health = 40;

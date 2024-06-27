@@ -12,6 +12,7 @@ export class Sprite {
         this.layer = params.layer || "world"; // or screen
         this.img = SpritePathMap[params.imageName || "player"];
         this.visible = params.visible ?? true;
+        this.filter = params.filter || "none";
     }
 
     draw() {
@@ -24,6 +25,7 @@ export class Sprite {
         }
         
         if (this.img.complete) {
+            Canvas.canvas.filter = this.filter;
             Canvas.canvas.drawImage(this.img, finalX, finalY, this.width, this.height);
         }
 
