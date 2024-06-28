@@ -13,6 +13,29 @@ export class Sprite {
         this.img = SpritePathMap[params.imageName || "player"];
         this.visible = params.visible ?? true;
         this.filter = params.filter || "none";
+        this.animation = params.animation || [];
+        this.animationDelay = params.animationDelay || 500;
+        this.animationPlayed = false;
+    }
+
+    playAnimation() {
+        this.animationPlayed = true;
+
+        this.nextAnimation();
+    }
+
+    nextAnimation() {
+        setTimeout(function() {
+            if (this.animationPlayed) {
+                this.animation.push(this.animation.shift());
+
+                this.nextAnimation();
+            }
+        }.bind(this), this.animationDelay)
+    }
+
+    stopAnimation() {
+        this.animationPlayed = false;
     }
 
     draw() {
@@ -23,8 +46,16 @@ export class Sprite {
             finalX = finalX - Viewport.x;
             finalY = finalY - Viewport.y;
         }
+
+        if (this.animation.length > 0) {
+            const anim = this.animation[0];
+            const img = SpritePathMap[anim || "player"];
+
+            Canvas.canvas.filter = this.filter;
+            Canvas.canvas.drawImage(img, finalX, finalY, this.width, this.height);
+        }
         
-        if (this.img.complete) {
+        else if (this.img.complete) {
             Canvas.canvas.filter = this.filter;
             Canvas.canvas.drawImage(this.img, finalX, finalY, this.width, this.height);
         }
