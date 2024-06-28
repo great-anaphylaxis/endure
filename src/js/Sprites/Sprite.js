@@ -20,13 +20,14 @@ export class Sprite {
         this.animationPlayed = false;
     }
 
-    playAnimation(name, delay) {
-        if (!(name == this.animationName)) {
+    playAnimation(name, delay, repeat=true) {
+        if (!(name == this.animationName) || !repeat) {
             this.stopAnimation();
             this.animationDelay = delay || this.animationDelay;
             this.animationName = name;
             this.animation = [...SpriteAnimationMap[this.animationName]];
             this.animationPlayed = true;
+            this.repeatAnimation = repeat;
 
             this.nextAnimation();
         }
@@ -37,15 +38,28 @@ export class Sprite {
             if (this.animationPlayed) {
                 this.animation.push(this.animation.shift());
 
+                if (!this.repeatAnimation && this.hasRepeatedAnimation()) {
+                    this.stopAnimation();
+                }
+
                 this.nextAnimation();
             }
         }.bind(this), this.animationDelay)
     }
 
     stopAnimation() {
-        
         clearTimeout(this.animationTimeout)
         this.animationPlayed = false;
+    }
+    
+    hasRepeatedAnimation() {
+        const hasRepeated = (this.animation[0] == SpriteAnimationMap[this.animationName][0]);
+
+        if (hasRepeated) {
+            return true;
+        }
+
+        return false;
     }
 
     draw() {

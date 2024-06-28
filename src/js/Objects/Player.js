@@ -125,7 +125,7 @@ export class Player extends Sprite {
 
         if (e.key == "Enter" && !this.isDamageCooldown) {
             this.canDamage = true;
-            this.playAnimation(`playerattack${this.direction}`, 40);
+            this.playAnimation(`playerattack${this.direction}`, 40, false);
 
             this.isDamageCooldown = true;
             setTimeout(function() {
