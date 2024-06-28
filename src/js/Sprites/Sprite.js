@@ -20,9 +20,10 @@ export class Sprite {
         this.animationPlayed = false;
     }
 
-    playAnimation(name) {
+    playAnimation(name, delay) {
         if (!(name == this.animationName)) {
             this.stopAnimation();
+            this.animationDelay = delay || this.animationDelay;
             this.animationName = name;
             this.animation = SpriteAnimationMap[this.animationName];
             this.animationPlayed = true;
@@ -32,7 +33,6 @@ export class Sprite {
     }
 
     nextAnimation() {
-        
         this.animationTimeout = setTimeout(function() {
             if (this.animationPlayed) {
                 this.animation.push(this.animation.shift());

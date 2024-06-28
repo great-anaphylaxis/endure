@@ -64,7 +64,7 @@ export class Player extends Sprite {
                 this.x += -this.speed;
             }
 
-            this.playAnimation('playerwalkingleft');
+            this.playAnimation('playerwalkingleft', 100);
         }
     
         if (this.right) {
@@ -75,7 +75,7 @@ export class Player extends Sprite {
                 this.x += this.speed;
             }
 
-            this.playAnimation('playerwalkingright');
+            this.playAnimation('playerwalkingright', 100);
         }
         
         this.velocityY += this.accelerationY;
@@ -131,10 +131,14 @@ export class Player extends Sprite {
     keyup(e) {
         if (e.key.toLowerCase() == "a") {
             this.left = false;
+
+            this.playAnimation('playeridleleft', 1000);
         }
     
         if (e.key.toLowerCase() == "d") {
             this.right = false;
+
+            this.playAnimation('playeridleright', 1000);
         }
     }
 
