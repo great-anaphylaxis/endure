@@ -29,8 +29,7 @@ export class Player extends Sprite {
     constructor() {
         super({
             width: 64, height: 64, 
-            x: 100, y: 100, z: SpriteZMap['player'],
-            imageName: 'player'
+            x: 100, y: 100, z: SpriteZMap['player']
         });
         this.toggleVisibility();
 
@@ -57,7 +56,7 @@ export class Player extends Sprite {
     }
 
     loop() {
-        if (this.left) {
+        if (this.left && !this.isDamageCooldown) {
             if (this.x <= Game.leftBorder) {
                 this.x = Game.leftBorder;
             }
@@ -68,7 +67,7 @@ export class Player extends Sprite {
             this.playAnimation('playerwalkingleft', 100);
         }
     
-        if (this.right) {
+        if (this.right && !this.isDamageCooldown) {
             if (this.x >= Game.rightBorder) {
                 this.x = Game.rightBorder;
             }
@@ -77,6 +76,10 @@ export class Player extends Sprite {
             }
 
             this.playAnimation('playerwalkingright', 100);
+        }
+
+        if (!this.animationPlayed) {
+            this.playAnimation(`playeridle${this.direction}`, 1000);
         }
         
         this.velocityY += this.accelerationY;
@@ -125,7 +128,7 @@ export class Player extends Sprite {
 
         if (e.key == "Enter" && !this.isDamageCooldown) {
             this.canDamage = true;
-            this.playAnimation(`playerattack${this.direction}`, 40, false);
+            this.playAnimation(`playerattack${this.direction}`, 30, false);
 
             this.isDamageCooldown = true;
             setTimeout(function() {

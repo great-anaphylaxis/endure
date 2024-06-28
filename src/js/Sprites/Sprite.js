@@ -20,6 +20,18 @@ export class Sprite {
         this.animationPlayed = false;
     }
 
+    isPlayingAnimation(...names) {
+        for (let i = 0; i < names.length; i++) {
+            if (names[i] == this.animationName) {
+                if (this.animationPlayed) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     playAnimation(name, delay, repeat=true) {
         if (!(name == this.animationName) || !repeat) {
             this.stopAnimation();
