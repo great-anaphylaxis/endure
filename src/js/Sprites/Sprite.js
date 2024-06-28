@@ -25,7 +25,7 @@ export class Sprite {
             this.stopAnimation();
             this.animationDelay = delay || this.animationDelay;
             this.animationName = name;
-            this.animation = SpriteAnimationMap[this.animationName];
+            this.animation = [...SpriteAnimationMap[this.animationName]];
             this.animationPlayed = true;
 
             this.nextAnimation();

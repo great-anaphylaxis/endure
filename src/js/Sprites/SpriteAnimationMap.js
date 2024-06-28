@@ -2,7 +2,9 @@ export var SpriteAnimationMap = {
     playerwalkingright: createAnimation("playerwalkingright", 7),
     playerwalkingleft: createAnimation("playerwalkingleft", 7),
     playeridleleft: createAnimation("playeridleleft", 1),
-    playeridleright: createAnimation("playeridleright", 1)
+    playeridleright: createAnimation("playeridleright", 1),
+    playerattackleft: createAnimation("playerattackleft", 10),
+    playerattackright: createAnimation("playerattackright", 10),
 }
 
 function createAnimation(prefix, lastIndex) {

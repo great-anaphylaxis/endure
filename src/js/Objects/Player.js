@@ -17,6 +17,7 @@ export class Player extends Sprite {
     jumped = false;
     inventory = new PlayerInventory(this);
     utility = new PlayerUtility(this);
+    direction = "right";
 
     player;
 
@@ -107,10 +108,14 @@ export class Player extends Sprite {
     keydown(e) {
         if (e.key.toLowerCase() == "a") {
             this.left = true;
+
+            this.direction = "left";
         }
     
         if (e.key.toLowerCase() == "d") {
-            this.right = true
+            this.right = true;
+
+            this.direction = "right";
         }
     
         if (e.key == " " && this.allowJump) {
@@ -120,10 +125,13 @@ export class Player extends Sprite {
 
         if (e.key == "Enter" && !this.isDamageCooldown) {
             this.canDamage = true;
+            this.playAnimation(`playerattack${this.direction}`, 40);
 
             this.isDamageCooldown = true;
             setTimeout(function() {
                 this.isDamageCooldown = false;
+
+                
             }.bind(this), this.damageCooldown);
         }
     }
