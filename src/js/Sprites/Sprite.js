@@ -1,6 +1,7 @@
 import { Canvas } from "../Canvas/Canvas.js";
 import { SpritePathMap } from "./SpritePathMap.js";
 import { Viewport } from "../Canvas/Viewport.js";
+import { SpriteAnimationPathMap } from "./SpriteAnimationMap.js";
 
 export class Sprite {
     constructor(params) {
@@ -13,7 +14,7 @@ export class Sprite {
         this.img = SpritePathMap[params.imageName || "player"];
         this.visible = params.visible ?? true;
         this.filter = params.filter || "none";
-        this.animation = params.animation || [];
+        this.animation = SpriteAnimationPathMap[params.animationName] || [];
         this.animationDelay = params.animationDelay || 500;
         this.animationPlayed = false;
     }
@@ -48,8 +49,7 @@ export class Sprite {
         }
 
         if (this.animation.length > 0) {
-            const anim = this.animation[0];
-            const img = SpritePathMap[anim || "player"];
+            const img = this.animation[0];
 
             Canvas.canvas.filter = this.filter;
             Canvas.canvas.drawImage(img, finalX, finalY, this.width, this.height);
