@@ -44,12 +44,22 @@ export class PlayerUtility extends Sprite {
     }
 
     toggleVisibility() {
+        const chosenGroup = PlayerUtilityGroup.chosenGroup;
+
         this.visible = !this.visible;
         this.title.visible = false;
         this.itemImage.visible = false;
         this.button.visible = false;
         
         this.title.text = '';
+
+        if (chosenGroup) {
+            for (let i = 0; i < chosenGroup.utilityItems.length; i++) {
+                const utilityItem = chosenGroup.utilityItems[i];
+                
+                utilityItem.visible = false;
+            }
+        }
         
         for (let i = 0; i < this.requiredItemsHint.length; i++) {
             const requiredItem = this.requiredItemsHint[i];
