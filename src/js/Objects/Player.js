@@ -63,6 +63,8 @@ export class Player extends Sprite {
             else {
                 this.x += -this.speed;
             }
+
+            this.playAnimation('playerwalkingleft');
         }
     
         if (this.right) {
@@ -72,6 +74,8 @@ export class Player extends Sprite {
             else {
                 this.x += this.speed;
             }
+
+            this.playAnimation('playerwalkingright');
         }
         
         this.velocityY += this.accelerationY;

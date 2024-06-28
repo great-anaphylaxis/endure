@@ -1,5 +1,6 @@
-export var SpriteAnimationPathMap = {
-    playerwalkingright: createAnimation("playerwalkingright", 7)
+export var SpriteAnimationMap = {
+    playerwalkingright: createAnimation("playerwalkingright", 7),
+    playerwalkingleft: createAnimation("playerwalkingleft", 7)
 }
 
 function createAnimation(prefix, lastIndex) {

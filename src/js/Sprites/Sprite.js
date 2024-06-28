@@ -1,7 +1,7 @@
 import { Canvas } from "../Canvas/Canvas.js";
 import { SpritePathMap } from "./SpritePathMap.js";
 import { Viewport } from "../Canvas/Viewport.js";
-import { SpriteAnimationPathMap } from "./SpriteAnimationMap.js";
+import { SpriteAnimationMap } from "./SpriteAnimationMap.js";
 
 export class Sprite {
     constructor(params) {
@@ -14,19 +14,26 @@ export class Sprite {
         this.img = SpritePathMap[params.imageName || "player"];
         this.visible = params.visible ?? true;
         this.filter = params.filter || "none";
-        this.animation = SpriteAnimationPathMap[params.animationName] || [];
-        this.animationDelay = params.animationDelay || 500;
+        this.animationName = params.animationName
+        this.animation = SpriteAnimationMap[this.animationName] || [];
+        this.animationDelay = params.animationDelay || 100;
         this.animationPlayed = false;
     }
 
-    playAnimation() {
-        this.animationPlayed = true;
+    playAnimation(name) {
+        if (!(name == this.animationName)) {
+            this.stopAnimation();
+            this.animationName = name;
+            this.animation = SpriteAnimationMap[this.animationName];
+            this.animationPlayed = true;
 
-        this.nextAnimation();
+            this.nextAnimation();
+        }
     }
 
     nextAnimation() {
-        setTimeout(function() {
+        
+        this.animationTimeout = setTimeout(function() {
             if (this.animationPlayed) {
                 this.animation.push(this.animation.shift());
 
@@ -36,6 +43,8 @@ export class Sprite {
     }
 
     stopAnimation() {
+        
+        clearTimeout(this.animationTimeout)
         this.animationPlayed = false;
     }
 
